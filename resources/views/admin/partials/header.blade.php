@@ -1,16 +1,18 @@
-<header>
-    <nav class="navbar bg-body-tertiary">
+
+    <nav class="navbar text-bg-dark py-4 px-4">
         <div class="container-fluid">
-          <a href="{{route('home')}}" target="_blank" class="navbar-brand">Vai al sito</a>
-          <a href="{{route('admin.home')}}"  class="navbar-brand">Home</a>
-          <form action="{{route('logout')}}" method="POST" class="d-flex">
-            <p class="me-3">{{Auth::user()->name}}</p>
-           @csrf
-            <button class="btn btn-danger" type="submit">Esci</button>
-          </form>
+
+            <a href="{{route('home')}}" target="_blank" class=" text-decoration-none me-3 btn btn-outline-light">Vai al sito</a>
+
+
+            <form action="{{route('logout')}}" method="POST" class="d-flex">
+                @csrf
+                <p class="me-3 my-auto ">{{Auth::user()->name}}</p>
+                <button class="btn btn-danger text-white" type="submit"><i class="fa-solid fa-right-from-bracket"></i></button>
+            </form>
         </div>
       </nav>
 
 
 
-</header>
+
