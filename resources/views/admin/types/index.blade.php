@@ -52,11 +52,12 @@
                         </td>
                         <td class="text-center d-flex">
                             <button class="btn btn-warning me-2" onclick="submitForm({{$type->id}})"><i class="fa-solid fa-pencil"></i></button>
-                            <form action="{{route('admin.types.destroy', $type)}}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare il tipo?')">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-                            </form>
+                            @include('admin.partials.deleteForm', [
+                            'route'=>route('admin.types.destroy',$type),
+                            'message'=> 'sei sicuro di voler eliminare '. $type->name . '?'
+
+                            ])
+
                         </td>
                     </tr>
                 @endforeach

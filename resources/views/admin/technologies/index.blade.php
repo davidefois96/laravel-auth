@@ -75,14 +75,11 @@
 
                         <button class="btn btn-warning me-2" onclick="submitForm({{$technology->id}})"><i class="fa-solid fa-pencil"></i></button>
 
-                        <form action="{{route('admin.technologies.destroy', $technology)}}" method="post" onsubmit="return confirm('Sei sicuro di voler eliminare la tecnologia?')">
+                        @include('admin.partials.deleteForm', [
+                            'route'=>route('admin.technologies.destroy',$technology),
+                            'message'=> 'sei sicuro di voler eliminare '. $technology->name . '?'
 
-                            @csrf
-                            @method('DELETE')
-
-                            <button class="btn btn-danger"><i class="fa-solid fa-trash"></i></button>
-
-                        </form>
+                        ])
 
 
                     </td>

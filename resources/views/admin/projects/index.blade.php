@@ -12,13 +12,24 @@ use App\Functions\Helper as Helper;
 
     <div class="p-5">
 
+
+
         <h1 class="text-center">Progetti</h1>
+
+        @if (session('cancel'))
+
+            <div class="alert alert-success mb-3 " role="alert">
+            {{session('cancel')}}
+            </div>
+
+        @endif
 
         <table class="table my-5">
             <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Name</th>
+                <th scope="col">Type</th>
                 <th scope="col">Date</th>
                 <th scope="col">Image</th>
                 <th scope="col">Interagisci</th>
@@ -30,6 +41,7 @@ use App\Functions\Helper as Helper;
                 <tr>
                     <th scope="row">{{$project->id}}</th>
                     <td>{{$project->name}}</td>
+                    <td>{{$project->type->name}}</td>
                     <td>{{Helper::formatDate($project->update_at)}}</td>
                     <td><img class="" src="{{asset('storage/' . $project->image)}}" alt="{{$project->name}}" onerror="this.src=`/img/placeholder.png`"></td>
                     <td >
@@ -37,13 +49,13 @@ use App\Functions\Helper as Helper;
 
                         <a class="btn btn-warning me-2" href="{{route('admin.projects.edit',$project)}}" ><i class="fa-solid fa-pencil"></i></a>
 
-                        <form action="{{route('admin.projects.destroy',$project)}}" method="post" onsubmit="return confirm('sei sicuro di voler eliminare il progetto?')">
-                            @csrf
-                            @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger" ><i class="fa-solid fa-trash"></i></button>
+                        @include('admin.partials.deleteForm', [
+                            'route'=>route('admin.projects.destroy',$project),
+                            'message'=> 'sei sicuro di voler eliminare '. $project->name . '?'
 
-                        </form>
+                        ])
+
 
 
 

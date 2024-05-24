@@ -32,6 +32,12 @@
                 Tipi
             </a>
         </li>
+        <li class="my-4">
+            <a class="text-decoration-none text-white " href="">
+                <i class="fa-solid fa-list me-2 "></i>
+                Progetti per Categoria
+            </a>
+        </li>
 
     </ul>
 
